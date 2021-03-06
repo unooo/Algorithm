@@ -1,3 +1,4 @@
+package Programmers;
 public class Programmers_깊이너비_단어변환 {
 	
 	public static void main(String[] args){

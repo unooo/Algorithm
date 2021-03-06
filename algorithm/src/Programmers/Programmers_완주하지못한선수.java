@@ -1,3 +1,4 @@
+package Programmers;
 import java.util.HashMap;
 
 public class Programmers_완주하지못한선수 {

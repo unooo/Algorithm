@@ -1,3 +1,4 @@
+package Programmers;
 import java.util.*;
 class Programmers_뉴스클러스터링 {
 	public static void main(String[] args){
