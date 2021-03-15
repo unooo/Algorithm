@@ -47,9 +47,9 @@ public class baek_9376Å»¿Á {
 		int ret[] = new int[K];
 		Arrays.fill(ret, Integer.MAX_VALUE);
 		for (int k = 0; k < K; k++) {
-			boolean[][] visit = new boolean[N][M];
+			int[][] visit = new int[N][M];
 			Queue<Node> que = new LinkedList<>();
-			visit[prisonerAry[0].i][prisonerAry[0].j] = true;
+			visit[prisonerAry[0].i][prisonerAry[0].j] = 1;
 			que.add(new Node(prisonerAry[0].i,prisonerAry[0].j,new LinkedList<>()));
 			while (!que.isEmpty()) {
 				Node node = que.poll();
@@ -58,8 +58,11 @@ public class baek_9376Å»¿Á {
 					int nextJ = node.j + dx[dir];
 
 					if (nextI < 0 || nextJ < 0 || nextI >= N || nextJ >= M) {
+						System.out.println();
+						continue;
+						
 						// todo
-				
+				/*
 						for(Node tp : node.doorList){
 							map[tp.i][tp.j]=0;
 						}
@@ -101,16 +104,24 @@ public class baek_9376Å»¿Á {
 							map[tp.i][tp.j]=Wall;
 						}
 						continue;
+						*/
+					
 					}
-					if (visit[nextI][nextJ] == true)
-						continue;
 					if (map[nextI][nextJ] == Wall)
 						continue;
-					if (map[nextI][nextJ] == Door) {
-						node.doorList.add(new Node(nextI, nextJ, null));
+					
+					if (visit[nextI][nextJ] == 0||(visit[nextI][nextJ] != 0&&(visit[nextI][nextJ]>visit[node.i][node.j]+1))){
+						if(map[nextI][nextJ] == Door){
+							node.doorList.add(new Node(nextI, nextJ, null));
+							visit[nextI][nextJ] = visit[node.i][node.j]+1;
+							que.add(new Node(nextI, nextJ, new LinkedList<>(node.doorList)));
+						}else{
+							visit[nextI][nextJ]=visit[node.i][node.j];
+							que.add(new Node(nextI, nextJ, new LinkedList<>(node.doorList)));
+						}
 					}
-					visit[nextI][nextJ] = true;
-					que.add(new Node(nextI, nextJ, new LinkedList<>(node.doorList)));
+					
+					
 
 				}
 
