@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -33,19 +34,24 @@ public class 나무재테크16235 {
 				refill[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<N;j++) {
+				treeMap[i][j]=new LinkedList<>();
+			}
+		}
 
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
 			int r = Integer.parseInt(st.nextToken()) - 1;
 			int c = Integer.parseInt(st.nextToken()) - 1;
 			int age = Integer.parseInt(st.nextToken());
-			if (treeMap[r][c] == null)
-				treeMap[r][c] = new LinkedList<Tree>();
 			treeMap[r][c].add(new Tree(r, c, age));
 		}
 
 		for (int i = 0; i < N; i++)
 			Arrays.fill(map[i], 5);
+		
+		
 
 		int step=0;
 		
@@ -59,8 +65,8 @@ public class 나무재테크16235 {
 
 					LinkedList<Tree> treeList = treeMap[i][j];
 					int len =treeList.size();
-					for (int k = 0; k < len; k++) {
-						Tree tree = treeList.get(k);
+					int k=0;
+					for(Tree tree:treeList){
 						if (tree.age <= map[i][j]) {
 							map[i][j] -= tree.age;
 							tree.age++;
@@ -71,6 +77,7 @@ public class 나무재테크16235 {
 							tpList.clear();
 							break;
 						}
+						k++;
 					}
 				}
 			}
@@ -81,8 +88,7 @@ public class 나무재테크16235 {
 						continue;
 					LinkedList<Tree> treeList = treeMap[i][j];
 					int len=treeList.size();
-					for (int k = 0; k <len ; k++) {
-						Tree tree = treeList.get(k);
+					for(Tree tree:treeList){
 						if (tree.age % 5 == 0) {
 
 							for (int dir = 0; dir < 8; dir++) {
