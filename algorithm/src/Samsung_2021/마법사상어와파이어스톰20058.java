@@ -70,8 +70,10 @@ public class 마법사상어와파이어스톰20058 {
 
 			}
 		}
-
-		System.out.println(ret);
+		if(ret==Integer.MIN_VALUE)
+			System.out.println(0);
+		else
+			System.out.println(ret);
 
 	}
 
