@@ -7,8 +7,8 @@ import java.util.PriorityQueue;
 public class Solution3 {
 
 	public static void main(String[] args) {
-		int coffee_times[] = {4, 2, 4};
-		int N = 3;
+		int coffee_times[] = {889941387, 676079780, 171420486, 846268194, 760594458, 912493752, 148734465, 555473133};
+		int N = 2;
 		solution(N, coffee_times);
 
 	}

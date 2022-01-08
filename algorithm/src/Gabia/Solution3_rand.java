@@ -3,8 +3,7 @@ package Gabia;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
-
-import Gabia.Solution3_2.Coffee;
+import java.util.Random;
 
 public class Solution3_rand {
 
@@ -14,11 +13,11 @@ public class Solution3_rand {
 		long testCase=0;
 		while(true) {
 			System.out.println(testCase);
-			int N = (int) (Math.random()*10)+1;
-			int len=(int) (Math.random()*100)+1;
+			int N = (int) (new Random().nextInt(10))+1;
+			int len=(int) (new Random().nextInt(10))+1;
 			coffee_times=new int[len];
 			for(int i = 0 ; i < len ; i ++) {
-				coffee_times[i]=(int) (Math.random()*10)+1;
+				coffee_times[i]=(int) (new Random().nextInt(1000000000))+1;
 			}
 
 			int [] ret1=solution(N, coffee_times);
@@ -126,7 +125,9 @@ public class Solution3_rand {
 	}
 
 	static class Coffee {
-		int id, time;
+		int id;
+		// 이게 int 라서 오버플롱우로 - 전환되어 오류 발생했음.
+		int time;
 
 		public Coffee(int id, int time) {
 			super();
